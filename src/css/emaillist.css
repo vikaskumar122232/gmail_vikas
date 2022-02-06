@@ -1,0 +1,130 @@
+.Emaillist{
+    display: flex;
+    flex-direction: column;
+}
+.Emaillist__settings{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    border-bottom: 1px solid whitesmoke;
+}
+.Emaillist__settings svg{
+    font-size: 18px;
+}
+.Emaillist__settingright{
+    display: flex;
+    align-items: center;
+}
+.Emaillist__settingright p{
+    font-size: 13px;
+}
+.Emaitype{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid whitesmoke;
+}
+.Emailtype__options{
+display: flex;
+align-items: center;
+min-width: 230px;
+height: 45px;
+padding: 0px 10px;
+cursor: pointer;
+border-bottom: 3px solid white;
+}
+.Emailtype__options p{
+font-size: 15px;
+padding-left: 10px;
+}
+.Emailtype__options svg{
+    font-size: 20px;
+    color: grey;
+}
+.Emailtype__options:hover{
+    background-color: whitesmoke;
+}
+.Emailtype__options--active{
+
+border-bottom-style: outset;
+border-bottom-width: 4px;
+border-bottom-color: #fa0404;
+border-bottom-right-radius: 3px;
+border-bottom-left-radius: 3px;
+    
+}
+.Emailtype__options--active p,
+.Emailtype__options--active svg{
+font-weight: bolder;
+color: #d93025;
+
+}
+.Emailbody{
+display: flex;
+align-items: center;
+border-bottom: 2px solid whitesmoke;
+padding: 0px 10px;
+height: 30px;
+     
+}
+.Emailbody:hover{
+    box-shadow: 2px 2px 3px rgb(175, 175, 175);
+   cursor: pointer;
+   border: 1px solid rgb(219, 219, 219);
+
+}
+.Emailbody svg:hover{
+    color: black;
+    font-size: 20px;
+
+}
+.Emailbody__left{
+    display: flex;
+    align-items: center;
+    flex: 30%;
+
+}
+.Emailbody__left svg{
+    font-size: 18px;
+    color: gray;
+    margin-right: 8px;
+   
+}
+.Emailbody__left h4{
+    font-size: 14px;
+    margin-left: 10px;
+}
+.Emailbody__middel{
+    display: flex;
+    align-items: center;
+    flex: 60%;
+    margin-left: 0;
+
+}
+
+.Emailbody__middel .Emailbody__middel_msg{
+    display: flex;
+    flex: 90%;
+  
+}
+.Emailbody__middel .Emailbody__middel_msg p{
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:340px;
+   
+}
+.Emailbody__right{
+    display: flex;
+    align-items: center;
+    flex: 10%;
+ 
+
+}
+.Emailbody__right p{
+    font-size: 12px;
+    font-weight: bolder;
+    padding-left: 35px;
+}
