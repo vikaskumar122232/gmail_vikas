@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import "./css/compose.css";
 import RemoveIcon from '@mui/icons-material/Remove';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
@@ -16,8 +17,32 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { closeSendMessage } from './features/mailSlice';
+import { db } from './firebase';
+import firebase from 'firebase/compat/app';
 function Compose() {
+    const [to, setTo] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+  
     const dispatch = useDispatch();
+    const fromSubmit = (e) => {
+        e.preventDefault();
+        if (to === "") {
+            return alert("to is required");
+        }
+        if (subject === "") {
+            return alert("subject is required");
+        }
+db.collection("emalis").addDoc({
+            to,
+            subject:subject,
+            message:message,
+            created: firebase.firestore.FieldValue.serverTimestamp()
+       });  
+        
+        alert("mail sent");
+    
+    };
     return <div className="compose">
         <div className="compose__header">
             <div className="compose__header_left">
@@ -28,12 +53,12 @@ function Compose() {
                 <OpenInFullIcon />
                 <CloseIcon onClick={() => dispatch(closeSendMessage())}/>
             </div>
-        </div>
+        </div><form onSubmit={fromSubmit}>
         <div className="compose__body">
             <div className="compose__body_form">
-                <input type="Email" placeholder='Reciepents'/>
-                <input type="Email" placeholder='Subject' /> 
-                <textarea rows="16"></textarea>
+                <input type="Email" placeholder='Reciepents'value={to} onChange={(e)=>setTo(e.target.value)} />
+                <input type="text" placeholder='Subject' value={subject} onChange={(e)=>setSubject(e.target.value)}/> 
+                    <textarea rows="16" value={message}  onChange={(e)=>setMessage(e.target.value)} ></textarea>
             </div>
 
         </div>
@@ -58,7 +83,8 @@ function Compose() {
                 <DeleteIcon />
               </div>  
             </div>
-        </div>
+            </div>
+            </form>
   </div>;
 }
 
