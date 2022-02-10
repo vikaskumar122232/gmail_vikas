@@ -18,7 +18,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { closeSendMessage } from './features/mailSlice';
 import { db } from './firebase';
-import firebase from 'firebase/compat/app';
+import { collection, addDoc, serverTimestamp} from 'firebase/firestore';
 function Compose() {
     const [to, setTo] = useState("");
     const [subject, setSubject] = useState("");
@@ -33,14 +33,17 @@ function Compose() {
         if (subject === "") {
             return alert("subject is required");
         }
-db.collection("emalis").addDoc({
-            to,
-            subject:subject,
-            message:message,
-            created: firebase.firestore.FieldValue.serverTimestamp()
-       });  
-        
+   addDoc(collection(db, "Emails"), {
+            to: to,
+            subject: subject,
+            message: message,
+            createAt:serverTimestamp()
+      }); 
+        setTo("");
+        setSubject("");
+        setMessage("");
         alert("mail sent");
+        dispatch(closeSendMessage());
     
     };
     return <div className="compose">
